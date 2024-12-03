@@ -5,7 +5,7 @@ import Accounts from "./Accounts";
 function Navbar() {
   return (
     <>
-      <nav class="bg-emerald-600  shadow-md p-4 flex justify-between items-center px-10">
+      <nav className="bg-emerald-600  shadow-md p-4 flex justify-between items-center px-10">
         <Brand />
         <Accounts />
       </nav>

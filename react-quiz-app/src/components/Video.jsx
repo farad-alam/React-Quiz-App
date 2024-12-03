@@ -1,20 +1,21 @@
 import React from "react";
 
-function Video() {
+function Video({imgUrl, imgAlt, title, description, noq}) {
+  
   return (
     <>
       <div className="card card-compact bg-base-100 w-70 shadow-xl px-2">
         <figure>
           <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
+            src={imgUrl}
+            alt={imgAlt}
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <h2 className="card-title">{title}</h2>
+          <p>{description}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <p className="justify-end" >No of Question: {noq}</p>
           </div>
         </div>
       </div>

@@ -6,9 +6,9 @@ function Brand() {
     <>
       <ul>
         <li>
-          <a href="index.html" class="flex items-center space-x-2">
-            <img src={brandLogo} alt="quiz logo" class="h-10" />
-            <h3 class="text-lg font-bold text-white">Quiz APP by Farad</h3>
+          <a href="index.html" className="flex items-center space-x-2">
+            <img src={brandLogo} alt="quiz logo" className="h-10" />
+            <h3 className="text-lg font-bold text-white">Quiz APP by Farad</h3>
           </a>
         </li>
       </ul>
