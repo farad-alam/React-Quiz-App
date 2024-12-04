@@ -1,19 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-// import ".../firebase"
+import app from "../../firebase"
+
+
 // initilize new context
 const AuthContext = React.createContext();
 
 // wrap the AuthContext with authenticated values
-export function AuthProvider({ Children }) {
+export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true)
     const [currentUser, setCurrentUser] = useState();
 
     useEffect(()=>{
         const auth = getAuth()
+        console.log("funtions called")
         const unsubscribe = onAuthStateChanged(auth, (user)=>{
             setCurrentUser(user)
             setLoading(false)
+            console.log("loading set")
         })
 
         return unsubscribe
@@ -48,7 +52,13 @@ export function AuthProvider({ Children }) {
     logIn,
     logOut,
   };
-  return (<AuthContext.Provider value={value}>{!loading && Children}</AuthContext.Provider>);
+  return (
+  <AuthContext.Provider value={value}>
+
+    {children}
+    
+    </AuthContext.Provider>
+);
 }
 
 // creating a hook to use the authentication on any page

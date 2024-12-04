@@ -7,12 +7,12 @@ import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
-import {AuthProvider} from "./contexts/AuthContext"
+import { AuthProvider } from "./contexts/AuthContext";
 function App() {
   return (
     <>
+    <AuthProvider>
       <Router>
-        <AuthProvider>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -28,8 +28,10 @@ function App() {
               <Login /> */}
           </Routes>
         </Layout>
-        </AuthProvider>
+
+        {/* <Home /> */}
       </Router>
+      </AuthProvider>
     </>
   );
 }
