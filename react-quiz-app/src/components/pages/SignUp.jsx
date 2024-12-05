@@ -17,7 +17,7 @@ export default function SignUp() {
 
   const navigate = useNavigate()
 
-  const {signUp, currentuser} = useAuth()
+  const {signUp} = useAuth()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -30,7 +30,6 @@ export default function SignUp() {
       setLoading(true)
       setError("")
       await signUp(email, password, username)
-      console.log(currentuser)
       navigate("/")
     } catch (error) {
       console.log(error)
@@ -57,7 +56,7 @@ export default function SignUp() {
               onChange={(e) => setUsername(e.target.value)}
             />
             <Input
-              type="Email"
+              type="email"
               placeholder="example@email.com"
               label="Email:"
               className="input input-bordered w-full"
@@ -66,7 +65,7 @@ export default function SignUp() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
-              type="text"
+              type="password"
               placeholder="password"
               label="Password:"
               className="input input-bordered w-full"
@@ -75,7 +74,7 @@ export default function SignUp() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Input
-              type="text"
+              type="password"
               placeholder="conformpassword"
               label="Conform Password:"
               className="input input-bordered w-full"
@@ -87,11 +86,12 @@ export default function SignUp() {
             <Checkbox required label="Agree to Terms & Conditions" value={agree}
               onChange={(e) => setAgree(e.target.checked)} />
             <Button
+              disabled={loading}
               buttonText="Sign Up"
               type="submit"
               className="btn btn-primary w-full"
             />
-            <Error message={error} />
+            {error && <Error message={error} />}
           </form>
         </div>
       </div>

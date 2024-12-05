@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
 
   function logIn(email, password){
     const auth = getAuth()
-    return signInWithEmailAndPassword(email, password)
+    return signInWithEmailAndPassword(auth, email, password)
   }
 
   function logOut(){
