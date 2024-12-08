@@ -1,9 +1,9 @@
 import React from "react";
 
-function QuizTitle() {
+function QuizTitle({title}) {
   return (
     <>
-      <h2 className="text-yellow-500 text-3xl">The Quize title</h2>
+      <h2 className="text-yellow-500 text-3xl">{title}</h2>
     </>
   );
 }

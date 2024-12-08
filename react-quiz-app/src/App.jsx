@@ -8,7 +8,10 @@ import Login from "./components/pages/Login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
 import { AuthProvider } from "./contexts/AuthContext";
+import useVideos from "./hooks/useVideos";
+
 function App() {
+  const {video} = useVideos()
   return (
     <>
     <AuthProvider>
@@ -16,7 +19,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/question" element={<Question />} />
+            <Route path="/question/:id" element={<Question />} />
             <Route path="/result" element={<Result />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
