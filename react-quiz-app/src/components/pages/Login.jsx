@@ -7,29 +7,32 @@ import { useNavigate } from "react-router-dom";
 import Error from "../Error";
 
 function Login() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const {logIn} = useAuth()
+  const { logIn } = useAuth();
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setLoading(true)
-      setError("")
-      await logIn(email, password)
-      navigate("/")
+      setLoading(true);
+      setError("");
+      await logIn(email, password);
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/");
+      }, [2000]);
     } catch (error) {
-      console.log(error)
-      setError("Failed to login")
-      setLoading(false)
+      console.log(error);
+      setError("Failed to login");
+      setLoading(false);
     }
   }
   return (
@@ -40,7 +43,6 @@ function Login() {
             Login your Account
           </h2>
           <form onSubmit={handleSubmit}>
-
             <Input
               type="email"
               placeholder="example@email.com"
@@ -60,9 +62,12 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Checkbox label="Remember Me" value={agree}
-              onChange={(e) => setAgree(e.target.checked)} />
-            <Button 
+            <Checkbox
+              label="Remember Me"
+              value={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+            />
+            <Button
               disabled={loading}
               buttonText="Login"
               type="submit"
@@ -70,9 +75,14 @@ function Login() {
             />
 
             {error && <Error message={error} />}
-            
+
             {/* <Error message={error} /> */}
           </form>
+          {success && (
+            <div className="mt-4 p-4 bg-teal-500 text-white font-semibold text-center">
+              Login successful! Redirecting...
+            </div>
+          )}
         </div>
       </div>
     </>
