@@ -6,10 +6,20 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Videos() {
   const [page, setPage] = useState(1); 
+  const [allVideos, setAllVideos] = useState([]);
   const { videoList, error, loading, hasMore } = useVideos(page);
 
+  // Append new videos when videoList updates
+  React.useEffect(() => {
+    if (videoList?.length > 0) {
+      setAllVideos((prevVideos) => [...prevVideos, ...videoList]);
+    }
+  }, [videoList]);
+
   return (
-    <>
+    <> 
+    <div>
+    
       <div className="text-center">
         {loading && (
           <span className="loading loading-bars loading-lg text-accent"></span>
@@ -22,18 +32,18 @@ function Videos() {
         
         !loading &&
           !error &&
-          videoList.length > 0 && (
+          allVideos.length > 0 && (
             <InfiniteScroll 
-            dataLength={videoList.length}
+            dataLength={allVideos.length}
             hasMore={hasMore}
             next={() => setPage((prevPage) => prevPage + 8)}
             scrollThreshold={0.99}
             loader={<span className="loading loading-bars loading-lg text-accent"></span>}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            scrollableTarget="scrollable-container"
+            // scrollableTarget="scrollable-container"
             >
               {
-                videoList.map((video, index) =>
+                allVideos.map((video, index) =>
                   video.noq != 0 ? (
                     <Link to={`question/${video.youtubeID}`} key={video.youtubeID}>
                       <Video
@@ -60,9 +70,10 @@ function Videos() {
           )
         }
 
-        {!loading && !error && videoList.length === 0 && (
+        {!loading && !error && allVideos.length === 0 && (
           <h3> No video Data Found </h3>
         )}
+      </div>
       </div>
     </>
   );

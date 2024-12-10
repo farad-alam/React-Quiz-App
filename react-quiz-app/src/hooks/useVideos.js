@@ -30,7 +30,7 @@ function useVideos(page) {
           console.log(videos)
           if (videos) {
             setVideoList((prevVideoList) => {
-              return [...prevVideoList, ...Object.values(videos)];
+              return [...Object.values(videos)];
             });
           }
         } else {

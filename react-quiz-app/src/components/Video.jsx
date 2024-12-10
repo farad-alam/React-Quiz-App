@@ -2,6 +2,7 @@ import React from "react";
 
 function Video({imgUrl, imgAlt, title, description, noq}) {
   
+  
   return (
     <>
       <div className="card card-compact bg-base-100 w-70 shadow-xl px-2">
