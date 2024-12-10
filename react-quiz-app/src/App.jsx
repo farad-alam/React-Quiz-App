@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
 import { AuthProvider } from "./contexts/AuthContext";
 import useVideos from "./hooks/useVideos";
-import PrivateRoute from "./components/privateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
 function App() {
